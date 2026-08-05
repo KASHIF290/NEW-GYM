@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Oswald, Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { business } from "@/lib/data";
+import { Analytics } from '@vercel/analytics/next';
 
 const oswald = Oswald({
   subsets: ["latin"],
@@ -96,6 +97,7 @@ export default function RootLayout({
       </head>
       <body className="bg-ink text-paper font-body antialiased">
         {children}
+        <Analytics />
       </body>
     </html>
   );
