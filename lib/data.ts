@@ -1,15 +1,18 @@
 // ============================================================
-// CONFIRMED DATA — sourced from public listings (Justdial, Google Maps, Instagram).
-// Verify with client before going live, especially the phone number.
+// CONFIRMED DATA — sourced directly from the client's printed business card/banner.
 // ============================================================
 export const business = {
   name: "M.S Fitness Gym",
-  tagline: "Best Gym in Howrah",
-  address: "36/22, Srinath Porel Ln, Near Sir Syed Ahmed High School, Tikiapara, Howrah, West Bengal 711101",
-  // TWO different numbers found in public listings — confirm which is correct with client
-  phonePrimary: "PLACEHOLDER_CONFIRM_PHONE", // e.g. "09804611612" or "7450000123"
-  phoneDisplay: "[Confirm phone with client]",
-  whatsappNumber: "PLACEHOLDER_CONFIRM_WHATSAPP", // digits only, country code, e.g. "917450000123"
+  tagline: "Be Fit & Happy",
+  address:
+    "36/22, Harachand Mukherjee Lane, Near Sir Syed Ahmed High School (On East West Bypass), Howrah - 711101",
+  // Two numbers listed on the card — first (with the call icon) treated as WhatsApp-enabled primary.
+  phonePrimary: "7450000123",
+  phoneSecondary: "9804611612",
+  phoneDisplay: "+91 74500 00123 / +91 98046 11612",
+  whatsappNumber: "917450000123", // digits only, country code
+  website: "msfitness.co.in",
+  email: "info@msfitness.co.in",
   hours: "Mon – Sat: 6:00 AM – 11:30 PM",
   hoursSunday: "Closed Sunday",
   instagram: "https://instagram.com/msfitnessgym3",
@@ -22,47 +25,49 @@ export const business = {
 };
 
 // ============================================================
-// PLACEHOLDER DATA — client has not provided this yet.
-// Every entry below is clearly marked. Replace before launch.
+// SAMPLE / DEMO CONTENT — written for client preview purposes only.
+// None of this is real. Swap every field below with actual gym info,
+// real trainer details, real pricing, and real customer reviews
+// before this site goes live.
 // ============================================================
 
 export const trainers = [
   {
-    name: "[Trainer name — client to provide]",
-    specialty: "[Specialty — e.g. Strength & Conditioning]",
+    name: "[Sample] Rohan Sharma",
+    specialty: "Strength & Conditioning",
     photo: "/trainers/placeholder-1.jpg",
   },
   {
-    name: "[Trainer name — client to provide]",
-    specialty: "[Specialty — e.g. Personal Training]",
+    name: "[Sample] Priya Das",
+    specialty: "Personal Training",
     photo: "/trainers/placeholder-2.jpg",
   },
   {
-    name: "[Trainer name — client to provide]",
-    specialty: "[Specialty — e.g. Group Fitness]",
+    name: "[Sample] Arjun Ghosh",
+    specialty: "Group Fitness & HIIT",
     photo: "/trainers/placeholder-3.jpg",
   },
 ];
 
 export const programs = [
   {
-    name: "Strength Training [confirm]",
-    description: "[Client to confirm exact program details and equipment available]",
+    name: "Strength Training",
+    description: "[Sample] Full range of free weights, plate-loaded machines, and power racks for building raw strength.",
     plate: "45",
   },
   {
-    name: "Personal Training [confirm]",
-    description: "[Client to confirm 1-on-1 training availability and pricing]",
+    name: "Personal Training",
+    description: "[Sample] One-on-one coaching with certified trainers, built around your specific goals and schedule.",
     plate: "35",
   },
   {
-    name: "Group Classes [confirm]",
-    description: "[Client to confirm which group classes are offered — e.g. HIIT, functional]",
+    name: "Group Classes",
+    description: "[Sample] HIIT, functional training, and circuit sessions run throughout the day — no extra cost with membership.",
     plate: "25",
   },
   {
-    name: "Cardio & Conditioning [confirm]",
-    description: "[Client to confirm cardio equipment and conditioning sessions offered]",
+    name: "Cardio & Conditioning",
+    description: "[Sample] Treadmills, cycles, rowers, and dedicated conditioning sessions for endurance and fat loss.",
     plate: "10",
   },
 ];
@@ -70,56 +75,56 @@ export const programs = [
 export const membershipPlans = [
   {
     tier: "Basic",
-    price: "[₹ / month — client to confirm]",
+    price: "[Sample] ₹1,200/month",
     features: [
-      "[Feature — client to confirm]",
-      "[Feature — client to confirm]",
-      "[Feature — client to confirm]",
+      "Full gym floor access",
+      "Locker facility",
+      "Open Mon–Sat, 6 AM–11:30 PM",
     ],
   },
   {
     tier: "Standard",
-    price: "[₹ / month — client to confirm]",
+    price: "[Sample] ₹1,800/month",
     features: [
-      "[Feature — client to confirm]",
-      "[Feature — client to confirm]",
-      "[Feature — client to confirm]",
-      "[Feature — client to confirm]",
+      "Everything in Basic",
+      "All group classes included",
+      "1 free trainer consultation/month",
+      "Diet guidance sheet",
     ],
     featured: true,
   },
   {
     tier: "Premium",
-    price: "[₹ / month — client to confirm]",
+    price: "[Sample] ₹2,800/month",
     features: [
-      "[Feature — client to confirm]",
-      "[Feature — client to confirm]",
-      "[Feature — client to confirm]",
-      "[Feature — client to confirm]",
-      "[Feature — client to confirm]",
+      "Everything in Standard",
+      "4 personal training sessions/month",
+      "Priority equipment access",
+      "Monthly progress tracking",
+      "Guest passes (2/month)",
     ],
   },
 ];
 
 export const testimonials = [
   {
-    name: "[Member name — client to provide or leave as Google review pull]",
-    quote: "[Real testimonial quote — client to provide, do not fabricate]",
+    name: "[Sample] Sourav K.",
+    quote: "Best gym in Tikiapara, hands down. Clean equipment and the trainers actually pay attention.",
     rating: 5,
   },
   {
-    name: "[Member name — client to provide or leave as Google review pull]",
-    quote: "[Real testimonial quote — client to provide, do not fabricate]",
+    name: "[Sample] Ananya R.",
+    quote: "Joined 6 months ago and already seeing real results. Great group class energy in the evenings.",
     rating: 5,
   },
   {
-    name: "[Member name — client to provide or leave as Google review pull]",
-    quote: "[Real testimonial quote — client to provide, do not fabricate]",
+    name: "[Sample] Debashish M.",
+    quote: "Solid strength setup and flexible timings. Would like more parking space, otherwise no complaints.",
     rating: 4,
   },
 ];
 
 export const galleryImages = Array.from({ length: 9 }).map((_, i) => ({
   src: `/gallery/placeholder-${(i % 3) + 1}.jpg`,
-  alt: "[Gym photo — client to provide actual equipment/interior photos]",
+  alt: "[Sample] Gym interior/equipment photo",
 }));

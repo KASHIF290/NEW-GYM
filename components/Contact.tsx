@@ -61,13 +61,13 @@ export default function Contact() {
   )}`;
 
   return (
-    <section id="contact" className="bg-chalk-paper px-6 py-24 text-iron">
+    <section id="contact" className="bg-ink-soft px-6 py-24 text-paper">
       <div className="mx-auto max-w-6xl">
         <div className="mb-16 flex items-end gap-4">
-          <span className="plate text-rust">06</span>
+          <span className="plate text-lime">06</span>
           <div>
-            <p className="font-mono text-xs uppercase tracking-[0.3em] text-rust">Start Today</p>
-            <h2 className="font-display text-4xl font-semibold uppercase tracking-tight text-iron sm:text-5xl">
+            <p className="font-mono text-xs uppercase tracking-[0.3em] text-lime">Start Today</p>
+            <h2 className="font-display text-4xl font-semibold uppercase tracking-tight text-paper sm:text-5xl">
               Get In Touch
             </h2>
           </div>
@@ -84,7 +84,7 @@ export default function Contact() {
             className="space-y-5"
           >
             <div>
-              <label htmlFor="name" className="mb-1 block font-mono text-xs uppercase tracking-widest text-iron/60">
+              <label htmlFor="name" className="mb-1 block font-mono text-xs uppercase tracking-widest text-paper/60">
                 Name
               </label>
               <input
@@ -95,18 +95,18 @@ export default function Contact() {
                 minLength={2}
                 aria-invalid={!!errors.name}
                 aria-describedby={errors.name ? "name-error" : undefined}
-                className="w-full border border-iron/20 bg-transparent px-4 py-3 font-body text-iron placeholder:text-iron/30 focus:border-rust"
+                className={`w-full border bg-transparent px-4 py-3 font-body text-paper placeholder:text-paper/30 focus:border-lime ${errors.name ? "border-alert" : "border-paper/20"}`}
                 placeholder="Your full name"
               />
               {errors.name && (
-                <p id="name-error" className="mt-1 font-mono text-xs text-rust">
+                <p id="name-error" className="mt-1 font-mono text-xs text-alert">
                   {errors.name}
                 </p>
               )}
             </div>
 
             <div>
-              <label htmlFor="phone" className="mb-1 block font-mono text-xs uppercase tracking-widest text-iron/60">
+              <label htmlFor="phone" className="mb-1 block font-mono text-xs uppercase tracking-widest text-paper/60">
                 Phone
               </label>
               <input
@@ -116,18 +116,18 @@ export default function Contact() {
                 required
                 aria-invalid={!!errors.phone}
                 aria-describedby={errors.phone ? "phone-error" : undefined}
-                className="w-full border border-iron/20 bg-transparent px-4 py-3 font-body text-iron placeholder:text-iron/30 focus:border-rust"
+                className={`w-full border bg-transparent px-4 py-3 font-body text-paper placeholder:text-paper/30 focus:border-lime ${errors.phone ? "border-alert" : "border-paper/20"}`}
                 placeholder="10-digit mobile number"
               />
               {errors.phone && (
-                <p id="phone-error" className="mt-1 font-mono text-xs text-rust">
+                <p id="phone-error" className="mt-1 font-mono text-xs text-alert">
                   {errors.phone}
                 </p>
               )}
             </div>
 
             <div>
-              <label htmlFor="message" className="mb-1 block font-mono text-xs uppercase tracking-widest text-iron/60">
+              <label htmlFor="message" className="mb-1 block font-mono text-xs uppercase tracking-widest text-paper/60">
                 Message
               </label>
               <textarea
@@ -138,11 +138,11 @@ export default function Contact() {
                 rows={4}
                 aria-invalid={!!errors.message}
                 aria-describedby={errors.message ? "message-error" : undefined}
-                className="w-full border border-iron/20 bg-transparent px-4 py-3 font-body text-iron placeholder:text-iron/30 focus:border-rust"
+                className={`w-full border bg-transparent px-4 py-3 font-body text-paper placeholder:text-paper/30 focus:border-lime ${errors.message ? "border-alert" : "border-paper/20"}`}
                 placeholder="What are your fitness goals?"
               />
               {errors.message && (
-                <p id="message-error" className="mt-1 font-mono text-xs text-rust">
+                <p id="message-error" className="mt-1 font-mono text-xs text-alert">
                   {errors.message}
                 </p>
               )}
@@ -151,18 +151,18 @@ export default function Contact() {
             <button
               type="submit"
               disabled={status === "submitting"}
-              className="w-full bg-iron px-8 py-4 font-display text-sm uppercase tracking-widest text-chalk-paper transition-colors hover:bg-rust disabled:opacity-60"
+              className="w-full bg-lime px-8 py-4 font-display text-sm uppercase tracking-widest text-ink transition-colors hover:bg-lime-light disabled:opacity-60"
             >
               {status === "submitting" ? "Sending…" : "Request Free Trial"}
             </button>
 
             {status === "success" && (
-              <p role="status" className="font-mono text-sm text-green-700">
+              <p role="status" className="font-mono text-sm text-lime-light">
                 Thanks — we&apos;ll get back to you shortly.
               </p>
             )}
             {status === "error" && (
-              <p role="alert" className="font-mono text-sm text-rust">
+              <p role="alert" className="font-mono text-sm text-alert">
                 Something went wrong. Please try WhatsApp instead, or call us directly.
               </p>
             )}
@@ -175,7 +175,7 @@ export default function Contact() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="space-y-6"
           >
-            <div className="aspect-video w-full overflow-hidden border border-iron/10">
+            <div className="aspect-video w-full overflow-hidden border border-paper/10">
               <iframe
                 src={business.mapEmbedSrc}
                 title="M.S Fitness Gym location"
@@ -186,7 +186,7 @@ export default function Contact() {
               />
             </div>
 
-            <div className="space-y-2 font-body text-sm text-iron/70">
+            <div className="space-y-2 font-body text-sm text-paper/70">
               <p>{business.address}</p>
               <p>{business.hours} · {business.hoursSunday}</p>
               <p>{business.phoneDisplay}</p>
@@ -196,7 +196,7 @@ export default function Contact() {
               href={whatsappHref}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-[#25D366] px-6 py-3 font-display text-sm uppercase tracking-widest text-iron transition-opacity hover:opacity-90"
+              className="inline-flex items-center gap-2 bg-[#25D366] px-6 py-3 font-display text-sm uppercase tracking-widest text-ink transition-opacity hover:opacity-90"
             >
               Chat on WhatsApp
             </a>

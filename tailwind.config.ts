@@ -8,24 +8,30 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        iron: {
-          DEFAULT: "#1B1815", // warm charcoal, not pure black
-          panel: "#242019",
-          light: "#2E2820",
+        // Base surfaces — true black with two subtly lighter panel tones
+        // for layering cards/sections without ever leaving the dark theme.
+        ink: {
+          DEFAULT: "#000000", // pure black, primary background
+          panel: "#0D0D0D", // card / raised surface
+          soft: "#141414", // alternate section background
+          line: "#242424", // hairline borders on dark
         },
-        chalk: {
-          DEFAULT: "#F2EEE4", // bone white text
-          dim: "#A79E8D", // warm grey secondary text
-          paper: "#EDE7DA", // paper contrast sections
+        // Brand lime — pulled directly from the gym's signage/logo
+        lime: {
+          DEFAULT: "#8FD300",
+          light: "#A6E62E",
+          dark: "#6FA300",
         },
-        brass: {
-          DEFAULT: "#C89B3C", // worn brass / iron plate accent
-          light: "#DDB65E",
-          dark: "#9C7526",
+        // Text on dark
+        paper: {
+          DEFAULT: "#FFFFFF",
+          dim: "#B3B3B3", // secondary text
+          faint: "#7A7A7A", // tertiary / disabled
         },
-        rust: {
-          DEFAULT: "#8B3A2F", // rust red, secondary accent
-          light: "#A8483B",
+        // Distinct error/warning color — kept separate from brand lime so
+        // error states never look like a success/affirmative signal.
+        alert: {
+          DEFAULT: "#FF5A4E",
         },
       },
       fontFamily: {

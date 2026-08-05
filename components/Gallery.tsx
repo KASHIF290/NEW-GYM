@@ -6,13 +6,13 @@ import { galleryImages } from "@/lib/data";
 
 export default function Gallery() {
   return (
-    <section id="gallery" className="bg-chalk-paper px-6 py-24 text-iron">
+    <section id="gallery" className="bg-ink-soft px-6 py-24 text-paper">
       <div className="mx-auto max-w-6xl">
         <div className="mb-16 flex items-end gap-4">
-          <span className="plate text-rust">04</span>
+          <span className="plate text-lime">04</span>
           <div>
-            <p className="font-mono text-xs uppercase tracking-[0.3em] text-rust">Inside</p>
-            <h2 className="font-display text-4xl font-semibold uppercase tracking-tight text-iron sm:text-5xl">
+            <p className="font-mono text-xs uppercase tracking-[0.3em] text-lime">Inside</p>
+            <h2 className="font-display text-4xl font-semibold uppercase tracking-tight text-paper sm:text-5xl">
               Gallery
             </h2>
           </div>
@@ -26,7 +26,7 @@ export default function Gallery() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true, margin: "-40px" }}
               transition={{ duration: 0.4, delay: (i % 3) * 0.08 }}
-              className="relative aspect-square overflow-hidden bg-iron/10"
+              className="relative aspect-square overflow-hidden bg-ink-panel"
             >
               <Image
                 src={img.src}

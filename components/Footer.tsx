@@ -1,16 +1,29 @@
+import Image from "next/image";
 import { business } from "@/lib/data";
 
 export default function Footer() {
   return (
-    <footer className="border-t border-chalk-dim/10 bg-iron px-6 py-12">
+    <footer className="border-t border-paper-dim/10 bg-ink px-6 py-12">
       <div className="mx-auto flex max-w-6xl flex-col gap-8 md:flex-row md:items-start md:justify-between">
         <div>
-          <p className="font-display text-lg font-semibold uppercase tracking-wide text-chalk">
-            M.S <span className="text-brass">Fitness</span>
-          </p>
-          <p className="mt-2 max-w-xs font-body text-sm text-chalk-dim">{business.address}</p>
-          <p className="mt-1 font-body text-sm text-chalk-dim">
+          <div className="flex items-center gap-3">
+            <Image
+              src="/logo.png"
+              alt={business.name}
+              width={44}
+              height={44}
+              className="h-11 w-11 rounded-full object-cover"
+            />
+            <p className="font-display text-lg font-semibold uppercase tracking-wide text-paper">
+              M.S <span className="text-lime">Fitness</span>
+            </p>
+          </div>
+          <p className="mt-3 max-w-xs font-body text-sm text-paper-dim">{business.address}</p>
+          <p className="mt-1 font-body text-sm text-paper-dim">
             {business.hours} · {business.hoursSunday}
+          </p>
+          <p className="mt-1 font-body text-sm text-paper-dim">
+            {business.website} · {business.email}
           </p>
         </div>
 
@@ -25,7 +38,7 @@ export default function Footer() {
             <a
               key={href}
               href={href}
-              className="font-mono text-xs uppercase tracking-widest text-chalk-dim hover:text-brass"
+              className="font-mono text-xs uppercase tracking-widest text-paper-dim hover:text-lime"
             >
               {label}
             </a>
@@ -37,7 +50,7 @@ export default function Footer() {
             href={business.instagram}
             target="_blank"
             rel="noopener noreferrer"
-            className="font-mono text-xs uppercase tracking-widest text-chalk-dim hover:text-brass"
+            className="font-mono text-xs uppercase tracking-widest text-paper-dim hover:text-lime"
           >
             Instagram
           </a>
@@ -45,14 +58,14 @@ export default function Footer() {
             href={business.facebook}
             target="_blank"
             rel="noopener noreferrer"
-            className="font-mono text-xs uppercase tracking-widest text-chalk-dim hover:text-brass"
+            className="font-mono text-xs uppercase tracking-widest text-paper-dim hover:text-lime"
           >
             Facebook
           </a>
         </div>
       </div>
 
-      <p className="mx-auto mt-10 max-w-6xl font-mono text-xs text-chalk-dim/50">
+      <p className="mx-auto mt-10 max-w-6xl font-mono text-xs text-paper-dim/50">
         © {new Date().getFullYear()} {business.name}. All rights reserved.
       </p>
     </footer>

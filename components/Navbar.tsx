@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import { business } from "@/lib/data";
 
 const links = [
@@ -24,12 +25,21 @@ export default function Navbar() {
   return (
     <header
       className={`fixed top-0 z-50 w-full transition-colors duration-300 ${
-        scrolled ? "bg-iron/95 backdrop-blur-sm border-b border-brass/20" : "bg-transparent"
+        scrolled ? "bg-ink/95 backdrop-blur-sm border-b border-lime/20" : "bg-transparent"
       }`}
     >
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-        <a href="#top" className="font-display text-lg font-semibold tracking-wide text-chalk">
-          M.S <span className="text-brass">FITNESS</span>
+        <a href="#top" className="flex items-center gap-3">
+          <Image
+            src="/logo.png"
+            alt={business.name}
+            width={40}
+            height={40}
+            className="h-10 w-10 rounded-full object-cover"
+          />
+          <span className="font-display text-lg font-semibold tracking-wide text-paper">
+            M.S <span className="text-lime">FITNESS</span>
+          </span>
         </a>
 
         <ul className="hidden items-center gap-8 md:flex">
@@ -37,7 +47,7 @@ export default function Navbar() {
             <li key={l.href}>
               <a
                 href={l.href}
-                className="font-display text-sm uppercase tracking-widest text-chalk-dim transition-colors hover:text-brass"
+                className="font-display text-sm uppercase tracking-widest text-paper-dim transition-colors hover:text-lime"
               >
                 {l.label}
               </a>
@@ -47,7 +57,7 @@ export default function Navbar() {
 
         <a
           href="#contact"
-          className="hidden rounded-none border border-brass px-5 py-2 font-display text-sm uppercase tracking-widest text-brass transition-colors hover:bg-brass hover:text-iron md:inline-block"
+          className="hidden rounded-none border border-lime px-5 py-2 font-display text-sm uppercase tracking-widest text-lime transition-colors hover:bg-lime hover:text-ink md:inline-block"
         >
           Free Trial
         </a>
@@ -58,21 +68,21 @@ export default function Navbar() {
           className="flex flex-col gap-1.5 md:hidden"
           onClick={() => setOpen((v) => !v)}
         >
-          <span className={`h-0.5 w-6 bg-chalk transition-transform ${open ? "translate-y-2 rotate-45" : ""}`} />
-          <span className={`h-0.5 w-6 bg-chalk transition-opacity ${open ? "opacity-0" : ""}`} />
-          <span className={`h-0.5 w-6 bg-chalk transition-transform ${open ? "-translate-y-2 -rotate-45" : ""}`} />
+          <span className={`h-0.5 w-6 bg-paper transition-transform ${open ? "translate-y-2 rotate-45" : ""}`} />
+          <span className={`h-0.5 w-6 bg-paper transition-opacity ${open ? "opacity-0" : ""}`} />
+          <span className={`h-0.5 w-6 bg-paper transition-transform ${open ? "-translate-y-2 -rotate-45" : ""}`} />
         </button>
       </nav>
 
       {open && (
-        <div className="border-t border-brass/20 bg-iron px-6 pb-6 md:hidden">
+        <div className="border-t border-lime/20 bg-ink px-6 pb-6 md:hidden">
           <ul className="flex flex-col gap-4 pt-4">
             {links.map((l) => (
               <li key={l.href}>
                 <a
                   href={l.href}
                   onClick={() => setOpen(false)}
-                  className="font-display text-base uppercase tracking-widest text-chalk-dim hover:text-brass"
+                  className="font-display text-base uppercase tracking-widest text-paper-dim hover:text-lime"
                 >
                   {l.label}
                 </a>
@@ -82,7 +92,7 @@ export default function Navbar() {
               <a
                 href="#contact"
                 onClick={() => setOpen(false)}
-                className="mt-2 inline-block border border-brass px-5 py-2 font-display text-sm uppercase tracking-widest text-brass"
+                className="mt-2 inline-block border border-lime px-5 py-2 font-display text-sm uppercase tracking-widest text-lime"
               >
                 Free Trial
               </a>
