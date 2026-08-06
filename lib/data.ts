@@ -33,8 +33,8 @@ export const business = {
 
 export const trainers = [
   {
-    name: "[Sample] Rohan Sharma",
-    specialty: "Strength & Conditioning",
+    name: "Soumik Das",
+    specialty: "[Confirm exact specialty/title with client]",
     photo: "/trainers/placeholder-1.jpg",
   },
   {
@@ -72,10 +72,15 @@ export const programs = [
   },
 ];
 
+// Admission fee — one-time joining fee, applies once regardless of plan chosen.
+export const admissionFee = "₹1,000";
+
 export const membershipPlans = [
   {
-    tier: "Basic",
-    price: "[Sample] ₹1,200/month",
+    tier: "Monthly",
+    price: "₹1,800",
+    period: "/month",
+    effectiveRate: null,
     features: [
       "Full gym floor access",
       "Locker facility",
@@ -83,26 +88,38 @@ export const membershipPlans = [
     ],
   },
   {
-    tier: "Standard",
-    price: "[Sample] ₹1,800/month",
+    tier: "Quarterly",
+    price: "₹4,800",
+    period: "/3 months",
+    effectiveRate: "≈ ₹1,600/month",
     features: [
-      "Everything in Basic",
-      "All group classes included",
-      "1 free trainer consultation/month",
-      "Diet guidance sheet",
+      "Everything in Monthly",
+      "Better monthly rate",
+      "3-month commitment",
     ],
-    featured: true,
   },
   {
-    tier: "Premium",
-    price: "[Sample] ₹2,800/month",
+    tier: "Half-Yearly",
+    price: "₹8,000",
+    period: "/6 months",
+    effectiveRate: "≈ ₹1,333/month",
     features: [
-      "Everything in Standard",
-      "4 personal training sessions/month",
-      "Priority equipment access",
-      "Monthly progress tracking",
-      "Guest passes (2/month)",
+      "Everything in Quarterly",
+      "Even better monthly rate",
+      "6-month commitment",
     ],
+  },
+  {
+    tier: "Yearly",
+    price: "₹14,500",
+    period: "/12 months",
+    effectiveRate: "≈ ₹1,208/month",
+    features: [
+      "Everything in Half-Yearly",
+      "Best monthly rate",
+      "12-month commitment",
+    ],
+    featured: true,
   },
 ];
 
@@ -124,7 +141,14 @@ export const testimonials = [
   },
 ];
 
-export const galleryImages = Array.from({ length: 9 }).map((_, i) => ({
-  src: `/gallery/placeholder-${(i % 3) + 1}.jpg`,
-  alt: "[Sample] Gym interior/equipment photo",
-}));
+export const galleryImages = [
+  { type: "image", src: "/gallery/placeholder-1.jpg", alt: "M.S Fitness Gym reception and branding wall" },
+  { type: "video", src: "/gallery/gym-reel.mp4", poster: "/gallery/gym-reel-poster.jpg", alt: "M.S Fitness Gym reel" },
+  { type: "image", src: "/gallery/placeholder-2.jpg", alt: "Kettlebell rack and punching bag station" },
+  { type: "image", src: "/gallery/placeholder-3.jpg", alt: "Changing room with private lockers" },
+  { type: "image", src: "/gallery/placeholder-4.jpg", alt: "Gym entrance and equipment floor" },
+  { type: "image", src: "/gallery/placeholder-5.jpg", alt: "Member training with battle ropes" },
+  { type: "image", src: "/gallery/placeholder-6.jpg", alt: "Member training at M.S Fitness Gym" },
+  { type: "image", src: "/gallery/placeholder-7.jpg", alt: "Treadmill row and free weights area" },
+  { type: "image", src: "/gallery/placeholder-8.jpg", alt: "Second training floor with machine equipment" },
+];

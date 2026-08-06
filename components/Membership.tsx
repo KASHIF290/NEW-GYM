@@ -1,13 +1,13 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { membershipPlans } from "@/lib/data";
+import { membershipPlans, admissionFee } from "@/lib/data";
 
 export default function Membership() {
   return (
     <section id="membership" className="bg-ink px-6 py-24">
       <div className="mx-auto max-w-6xl">
-        <div className="mb-16 flex items-end gap-4">
+        <div className="mb-6 flex items-end gap-4">
           <span className="plate text-lime">03</span>
           <div>
             <p className="font-mono text-xs uppercase tracking-[0.3em] text-lime">Join</p>
@@ -17,7 +17,11 @@ export default function Membership() {
           </div>
         </div>
 
-        <div className="grid gap-6 md:grid-cols-3">
+        <p className="mb-12 font-mono text-sm text-paper-dim">
+          One-time admission fee: <span className="text-lime">{admissionFee}</span> (applies once, on joining, regardless of plan)
+        </p>
+
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {membershipPlans.map((plan, i) => (
             <motion.div
               key={plan.tier}
@@ -34,13 +38,19 @@ export default function Membership() {
               <div>
                 {plan.featured && (
                   <p className="mb-3 font-mono text-xs uppercase tracking-widest text-lime">
-                    Most Popular
+                    Best Value
                   </p>
                 )}
                 <h3 className="font-display text-2xl uppercase tracking-tight text-paper">
                   {plan.tier}
                 </h3>
-                <p className="mt-2 font-mono text-3xl text-lime">{plan.price}</p>
+                <p className="mt-2">
+                  <span className="font-mono text-3xl text-lime">{plan.price}</span>
+                  <span className="font-mono text-sm text-paper-dim">{plan.period}</span>
+                </p>
+                {plan.effectiveRate && (
+                  <p className="mt-1 font-mono text-xs text-paper-dim">{plan.effectiveRate}</p>
+                )}
 
                 <ul className="mt-6 space-y-3">
                   {plan.features.map((f) => (

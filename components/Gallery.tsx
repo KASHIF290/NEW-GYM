@@ -19,7 +19,7 @@ export default function Gallery() {
         </div>
 
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
-          {galleryImages.map((img, i) => (
+          {galleryImages.map((item, i) => (
             <motion.div
               key={i}
               initial={{ opacity: 0, scale: 0.97 }}
@@ -28,14 +28,33 @@ export default function Gallery() {
               transition={{ duration: 0.4, delay: (i % 3) * 0.08 }}
               className="relative aspect-square overflow-hidden bg-ink-panel"
             >
-              <Image
-                src={img.src}
-                alt={img.alt}
-                fill
-                sizes="(max-width: 640px) 50vw, 33vw"
-                loading="lazy"
-                className="object-cover transition-transform duration-500 hover:scale-105"
-              />
+              {item.type === "video" ? (
+                <>
+                  <video
+                    src={item.src}
+                    poster={item.poster}
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    preload="metadata"
+                    aria-label={item.alt}
+                    className="h-full w-full object-cover"
+                  />
+                  <span className="pointer-events-none absolute right-2 top-2 rounded-sm bg-ink/70 px-2 py-1 font-mono text-[10px] uppercase tracking-widest text-lime">
+                    Reel
+                  </span>
+                </>
+              ) : (
+                <Image
+                  src={item.src}
+                  alt={item.alt}
+                  fill
+                  sizes="(max-width: 640px) 50vw, 33vw"
+                  loading="lazy"
+                  className="object-cover transition-transform duration-500 hover:scale-105"
+                />
+              )}
             </motion.div>
           ))}
         </div>
