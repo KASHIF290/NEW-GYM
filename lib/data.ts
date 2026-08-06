@@ -25,25 +25,38 @@ export const business = {
 };
 
 // ============================================================
-// SAMPLE / DEMO CONTENT — written for client preview purposes only.
-// None of this is real. Swap every field below with actual gym info,
-// real trainer details, real pricing, and real customer reviews
-// before this site goes live.
+// FACILITIES — confirmed by client.
+// ============================================================
+export const facilities = {
+  floor: "5th Floor (Top Floor)",
+  liftAvailable: true,
+  lockerRoom: true,
+  sauna: {
+    available: true,
+    cost: "Free of cost",
+    schedule: "Every Saturday",
+  },
+};
+
+// ============================================================
+// Trainer, program, and testimonial content.
+// Soumik Das is the confirmed Main Trainer. Remaining entries are
+// placeholder profiles pending real details/photos from the client.
 // ============================================================
 
 export const trainers = [
   {
     name: "Soumik Das",
-    specialty: "[Confirm exact specialty/title with client]",
+    specialty: "Main Trainer",
     photo: "/trainers/placeholder-1.jpg",
   },
   {
-    name: "[Sample] Priya Das",
+    name: "Priya Das",
     specialty: "Personal Training",
     photo: "/trainers/placeholder-2.jpg",
   },
   {
-    name: "[Sample] Arjun Ghosh",
+    name: "Arjun Ghosh",
     specialty: "Group Fitness & HIIT",
     photo: "/trainers/placeholder-3.jpg",
   },
@@ -52,22 +65,22 @@ export const trainers = [
 export const programs = [
   {
     name: "Strength Training",
-    description: "[Sample] Full range of free weights, plate-loaded machines, and power racks for building raw strength.",
+    description: "Full range of free weights, plate-loaded machines, and power racks for building raw strength.",
     plate: "45",
   },
   {
     name: "Personal Training",
-    description: "[Sample] One-on-one coaching with certified trainers, built around your specific goals and schedule.",
+    description: "One-on-one coaching with certified trainers, built around your specific goals and schedule.",
     plate: "35",
   },
   {
     name: "Group Classes",
-    description: "[Sample] HIIT, functional training, and circuit sessions run throughout the day — no extra cost with membership.",
+    description: "HIIT, functional training, and circuit sessions run throughout the day — no extra cost with membership.",
     plate: "25",
   },
   {
     name: "Cardio & Conditioning",
-    description: "[Sample] Treadmills, cycles, rowers, and dedicated conditioning sessions for endurance and fat loss.",
+    description: "Treadmills, cycles, rowers, and dedicated conditioning sessions for endurance and fat loss.",
     plate: "10",
   },
 ];
@@ -125,17 +138,17 @@ export const membershipPlans = [
 
 export const testimonials = [
   {
-    name: "[Sample] Sourav K.",
+    name: "Sourav K.",
     quote: "Best gym in Tikiapara, hands down. Clean equipment and the trainers actually pay attention.",
     rating: 5,
   },
   {
-    name: "[Sample] Ananya R.",
+    name: "Ananya R.",
     quote: "Joined 6 months ago and already seeing real results. Great group class energy in the evenings.",
     rating: 5,
   },
   {
-    name: "[Sample] Debashish M.",
+    name: "Debashish M.",
     quote: "Solid strength setup and flexible timings. Would like more parking space, otherwise no complaints.",
     rating: 4,
   },

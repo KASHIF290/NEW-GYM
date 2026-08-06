@@ -6,26 +6,14 @@ Next.js 14 (App Router) + TypeScript + Tailwind CSS + Framer Motion. Zero-cost s
 
 ```bash
 npm install
-cp .env.example .env.local
-```
-
-Open `.env.local` and add your Formspree form ID (see step 2).
-
-```bash
 npm run dev
 ```
 
 Visit `http://localhost:3000`.
 
-## 2. Set up the contact form (Formspree — free)
+Contact is handled entirely via WhatsApp (`wa.me` link) and a direct `tel:` call button — no form, no third-party service, no environment variables needed.
 
-1. Go to [formspree.io](https://formspree.io) → sign up free.
-2. Create a new form.
-3. Copy the form ID from the endpoint URL: `formspree.io/f/XXXXXXXX` → `XXXXXXXX` is your ID.
-4. Paste it into `.env.local` as `NEXT_PUBLIC_FORMSPREE_ID=XXXXXXXX`.
-5. Free tier = 50 submissions/month. Upgrade only if the gym outgrows that.
-
-## 3. Deploy to Vercel (free)
+## 2. Deploy to Vercel (free)
 
 1. Push this project to a GitHub repo:
    ```bash
@@ -39,13 +27,10 @@ Visit `http://localhost:3000`.
 2. Go to [vercel.com](https://vercel.com) → sign up free (use GitHub login).
 3. Click **New Project** → import your repo.
 4. Vercel auto-detects Next.js — no config needed.
-5. Before clicking Deploy, add the environment variable:
-   - Key: `NEXT_PUBLIC_FORMSPREE_ID`
-   - Value: your Formspree ID
-6. Click **Deploy**. You'll get a live URL like `ms-fitness-gym.vercel.app`.
-7. To add a custom domain later: **Project → Settings → Domains** → follow Vercel's DNS instructions.
+5. Click **Deploy**. You'll get a live URL like `ms-fitness-gym.vercel.app`.
+6. To add a custom domain later: **Project → Settings → Domains** → follow Vercel's DNS instructions.
 
-## 4. Info needed from client before launch
+## 3. Info needed from client before launch
 
 This is the master checklist — nothing below should go live until confirmed.
 
@@ -54,16 +39,18 @@ This is the master checklist — nothing below should go live until confirmed.
 | Phone numbers (confirmed from business card) | `lib/data.ts` → `phonePrimary`, `phoneSecondary`, `phoneDisplay` | ✅ Confirmed |
 | WhatsApp number | `lib/data.ts` → `whatsappNumber` | ✅ Confirmed (using primary card number) |
 | Address, website, email (confirmed from business card) | `lib/data.ts` → `business` | ✅ Confirmed |
+| Floor, lift, locker room, sauna | `lib/data.ts` → `facilities` | ✅ Confirmed |
+| One-time admission fee | `lib/data.ts` → `admissionFee` | ✅ Confirmed |
+| Main Trainer (Soumik Das) | `lib/data.ts` → `trainers` | ✅ Confirmed |
 | **Real logo file** | `public/logo.png` | ⬜ **Add real file — see below** |
-| Gym story / About copy | `components/About.tsx` | ⬜ Client to provide |
-| Trainer names, specialties, photos | `lib/data.ts` → `trainers`, `public/trainers/` | ⬜ Client to provide |
-| Real programs/classes offered | `lib/data.ts` → `programs` | ⬜ Client to confirm |
-| Membership pricing (all 3 tiers + features) | `lib/data.ts` → `membershipPlans` | ⬜ Client to provide |
+| Trainer photos for Soumik + additional trainer names/specialties | `lib/data.ts` → `trainers`, `public/trainers/` | ⬜ Client to provide (currently stock placeholders) |
+| Real programs/classes offered | `lib/data.ts` → `programs` | ⬜ Client to confirm final wording |
+| Membership pricing (all 4 tiers + features) | `lib/data.ts` → `membershipPlans` | ⬜ Client to confirm final numbers |
 | Real member testimonials (do not fabricate) | `lib/data.ts` → `testimonials` | ⬜ Client to provide |
-| Real gym photos (hero + gallery) | `public/hero.jpg`, `public/gallery/` | ⬜ Client to provide |
-| USPs (AC, women's hours, steam room, etc.) | Add to About/Programs copy | ⬜ Client to confirm |
+| Gallery photos | `public/gallery/` | ✅ Real gym photos in place |
+| Reel video orientation | `public/gallery/gym-reel.mp4` | ✅ Fixed — re-rotated with clean caption bar |
 
-**Do not replace placeholder pricing, testimonials, or trainer bios with invented content** — every placeholder is intentionally marked `[client to confirm]` so nothing fabricated accidentally ships to a real business's site.
+**Do not replace placeholder pricing, testimonials, or trainer bios with invented content** — anything still marked "client to provide" is intentionally left as-is so nothing fabricated accidentally ships to a real business's site.
 
 ## 5. Brand system
 

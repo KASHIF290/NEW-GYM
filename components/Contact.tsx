@@ -1,64 +1,13 @@
 "use client";
 
-import { useState, FormEvent } from "react";
 import { motion } from "framer-motion";
-import { business } from "@/lib/data";
-
-type Status = "idle" | "submitting" | "success" | "error";
+import { business, facilities } from "@/lib/data";
 
 export default function Contact() {
-  const [status, setStatus] = useState<Status>("idle");
-  const [errors, setErrors] = useState<Record<string, string>>({});
-
-  function validate(form: HTMLFormElement) {
-    const data = new FormData(form);
-    const next: Record<string, string> = {};
-
-    const name = String(data.get("name") || "").trim();
-    const phone = String(data.get("phone") || "").trim();
-    const message = String(data.get("message") || "").trim();
-
-    if (name.length < 2) next.name = "Enter your full name.";
-    if (!/^[0-9+\-\s]{10,15}$/.test(phone)) next.phone = "Enter a valid phone number.";
-    if (message.length < 5) next.message = "Tell us a little about your goals.";
-
-    setErrors(next);
-    return Object.keys(next).length === 0;
-  }
-
-  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    const form = e.currentTarget;
-    if (!validate(form)) return;
-
-    const formspreeId = process.env.NEXT_PUBLIC_FORMSPREE_ID;
-    if (!formspreeId) {
-      console.error("NEXT_PUBLIC_FORMSPREE_ID is not set in .env.local");
-      setStatus("error");
-      return;
-    }
-
-    setStatus("submitting");
-    try {
-      const res = await fetch(`https://formspree.io/f/${formspreeId}`, {
-        method: "POST",
-        headers: { Accept: "application/json" },
-        body: new FormData(form),
-      });
-      if (res.ok) {
-        setStatus("success");
-        form.reset();
-      } else {
-        setStatus("error");
-      }
-    } catch {
-      setStatus("error");
-    }
-  }
-
   const whatsappHref = `https://wa.me/${business.whatsappNumber}?text=${encodeURIComponent(
     "Hi, I'd like to know more about membership at M.S Fitness Gym."
   )}`;
+  const callHref = `tel:+91${business.phonePrimary}`;
 
   return (
     <section id="contact" className="bg-ink-soft px-6 py-24 text-paper">
@@ -74,106 +23,58 @@ export default function Contact() {
         </div>
 
         <div className="grid gap-12 md:grid-cols-2">
-          <motion.form
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.5 }}
-            onSubmit={handleSubmit}
-            noValidate
-            className="space-y-5"
+            className="flex flex-col justify-center space-y-6"
           >
-            <div>
-              <label htmlFor="name" className="mb-1 block font-mono text-xs uppercase tracking-widest text-paper/60">
-                Name
-              </label>
-              <input
-                id="name"
-                name="name"
-                type="text"
-                required
-                minLength={2}
-                aria-invalid={!!errors.name}
-                aria-describedby={errors.name ? "name-error" : undefined}
-                className={`w-full border bg-transparent px-4 py-3 font-body text-paper placeholder:text-paper/30 focus:border-lime ${errors.name ? "border-alert" : "border-paper/20"}`}
-                placeholder="Your full name"
-              />
-              {errors.name && (
-                <p id="name-error" className="mt-1 font-mono text-xs text-alert">
-                  {errors.name}
-                </p>
-              )}
+            <p className="font-body text-lg leading-relaxed text-paper/70">
+              Fastest way to reach us — chat with us directly on WhatsApp or give us a call.
+              We&apos;ll help you pick the right plan and get you started.
+            </p>
+
+            <div className="flex flex-col gap-4 sm:flex-row">
+              <a
+                href={whatsappHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex flex-1 items-center justify-center gap-2 bg-[#25D366] px-8 py-4 font-display text-sm uppercase tracking-widest text-ink transition-opacity hover:opacity-90"
+              >
+                <svg viewBox="0 0 24 24" className="h-5 w-5 fill-ink" aria-hidden="true">
+                  <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.28-1.38a9.9 9.9 0 0 0 4.76 1.21h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2zm5.8 14.03c-.24.68-1.42 1.3-1.96 1.38-.5.08-1.13.11-1.83-.12-.42-.14-.96-.32-1.65-.62-2.9-1.25-4.8-4.17-4.94-4.36-.14-.19-1.18-1.57-1.18-3s.75-2.13 1.02-2.42c.27-.29.58-.36.78-.36.19 0 .39 0 .56.01.18.01.42-.07.65.5.24.58.82 2 .89 2.14.07.15.12.32.02.51-.1.19-.15.31-.29.48-.15.17-.31.38-.44.51-.15.15-.3.31-.13.6.17.29.76 1.25 1.63 2.02 1.12.99 2.06 1.3 2.35 1.45.29.15.46.12.63-.07.17-.19.72-.84.92-1.13.19-.29.38-.24.64-.14.26.1 1.65.78 1.93.92.29.14.48.22.55.34.07.13.07.72-.17 1.4z" />
+                </svg>
+                Chat on WhatsApp
+              </a>
+
+              <a
+                href={callHref}
+                className="inline-flex flex-1 items-center justify-center gap-2 border border-lime px-8 py-4 font-display text-sm uppercase tracking-widest text-lime transition-colors hover:bg-lime hover:text-ink"
+              >
+                <svg viewBox="0 0 24 24" className="h-5 w-5 fill-current" aria-hidden="true">
+                  <path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.61 21 3 13.39 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.24.2 2.45.57 3.57a1 1 0 0 1-.25 1.02l-2.2 2.2z" />
+                </svg>
+                Call Now
+              </a>
             </div>
 
-            <div>
-              <label htmlFor="phone" className="mb-1 block font-mono text-xs uppercase tracking-widest text-paper/60">
-                Phone
-              </label>
-              <input
-                id="phone"
-                name="phone"
-                type="tel"
-                required
-                aria-invalid={!!errors.phone}
-                aria-describedby={errors.phone ? "phone-error" : undefined}
-                className={`w-full border bg-transparent px-4 py-3 font-body text-paper placeholder:text-paper/30 focus:border-lime ${errors.phone ? "border-alert" : "border-paper/20"}`}
-                placeholder="10-digit mobile number"
-              />
-              {errors.phone && (
-                <p id="phone-error" className="mt-1 font-mono text-xs text-alert">
-                  {errors.phone}
-                </p>
-              )}
-            </div>
-
-            <div>
-              <label htmlFor="message" className="mb-1 block font-mono text-xs uppercase tracking-widest text-paper/60">
-                Message
-              </label>
-              <textarea
-                id="message"
-                name="message"
-                required
-                minLength={5}
-                rows={4}
-                aria-invalid={!!errors.message}
-                aria-describedby={errors.message ? "message-error" : undefined}
-                className={`w-full border bg-transparent px-4 py-3 font-body text-paper placeholder:text-paper/30 focus:border-lime ${errors.message ? "border-alert" : "border-paper/20"}`}
-                placeholder="What are your fitness goals?"
-              />
-              {errors.message && (
-                <p id="message-error" className="mt-1 font-mono text-xs text-alert">
-                  {errors.message}
-                </p>
-              )}
-            </div>
-
-            <button
-              type="submit"
-              disabled={status === "submitting"}
-              className="w-full bg-lime px-8 py-4 font-display text-sm uppercase tracking-widest text-ink transition-colors hover:bg-lime-light disabled:opacity-60"
-            >
-              {status === "submitting" ? "Sending…" : "Request Free Trial"}
-            </button>
-
-            {status === "success" && (
-              <p role="status" className="font-mono text-sm text-lime-light">
-                Thanks — we&apos;ll get back to you shortly.
+            <div className="space-y-2 font-body text-sm text-paper/70">
+              <p>{business.address}</p>
+              <p className="text-lime">
+                {facilities.floor}
+                {facilities.liftAvailable ? " · Lift Available" : ""}
               </p>
-            )}
-            {status === "error" && (
-              <p role="alert" className="font-mono text-sm text-alert">
-                Something went wrong. Please try WhatsApp instead, or call us directly.
-              </p>
-            )}
-          </motion.form>
+              <p>{business.hours} · {business.hoursSunday}</p>
+              <p>{business.phoneDisplay}</p>
+            </div>
+          </motion.div>
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="space-y-6"
           >
             <div className="aspect-video w-full overflow-hidden border border-paper/10">
               <iframe
@@ -185,21 +86,6 @@ export default function Contact() {
                 referrerPolicy="no-referrer-when-downgrade"
               />
             </div>
-
-            <div className="space-y-2 font-body text-sm text-paper/70">
-              <p>{business.address}</p>
-              <p>{business.hours} · {business.hoursSunday}</p>
-              <p>{business.phoneDisplay}</p>
-            </div>
-
-            <a
-              href={whatsappHref}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-[#25D366] px-6 py-3 font-display text-sm uppercase tracking-widest text-ink transition-opacity hover:opacity-90"
-            >
-              Chat on WhatsApp
-            </a>
           </motion.div>
         </div>
       </div>

@@ -2,7 +2,14 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { trainers } from "@/lib/data";
+import { trainers, facilities } from "@/lib/data";
+
+const facilityList = [
+  facilities.floor && `${facilities.floor}${facilities.liftAvailable ? " · Lift Available" : ""}`,
+  facilities.lockerRoom && "Locker Room Available",
+  facilities.sauna.available &&
+    `Sauna Room — ${facilities.sauna.cost}, ${facilities.sauna.schedule}`,
+].filter(Boolean) as string[];
 
 export default function About() {
   return (
@@ -26,14 +33,28 @@ export default function About() {
             transition={{ duration: 0.6 }}
           >
             <p className="font-body text-lg leading-relaxed text-paper-dim">
-              {/* SAMPLE COPY — swap for real gym story before launch */}
-              [Sample] M.S Fitness Gym has been a fixture in Tikiapara for years, built on
-              one simple idea — no shortcuts, no gimmicks, just proper equipment and coaching
-              that gets results. Rated 4.4/5 by 600+ members on Google, the gym keeps its
-              floor open early to late so training fits around your day, not the other way
-              around. Whether you're here to build strength, drop weight, or just stay
-              consistent, the team's focus stays the same: showing up for you every single day.
+              M.S Fitness Gym is the best gym in the Tikiapara area, built on one simple
+              idea — no shortcuts, no gimmicks, just proper equipment and coaching that gets
+              results. The floor is fully loaded with multiple equipment for strength,
+              cardio, and functional training, set inside a clean, positive, and supportive
+              environment led by Main Trainer Soumik Das. Rated 4.4/5 by 600+ members on
+              Google, the gym keeps its floor open early to late so training fits around
+              your day, not the other way around. Whether you're here to build strength,
+              drop weight, or just stay consistent, the team's focus stays the same: showing
+              up for you every single day.
             </p>
+
+            <ul className="mt-8 space-y-2 border-t border-paper-dim/20 pt-6">
+              {facilityList.map((item) => (
+                <li
+                  key={item}
+                  className="flex items-start gap-2 font-mono text-sm text-paper-dim"
+                >
+                  <span className="mt-1 text-lime">—</span>
+                  {item}
+                </li>
+              ))}
+            </ul>
           </motion.div>
 
           <motion.div

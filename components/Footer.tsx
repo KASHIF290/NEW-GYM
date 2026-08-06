@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { business } from "@/lib/data";
+import { business, facilities } from "@/lib/data";
 
 export default function Footer() {
   return (
@@ -19,6 +19,10 @@ export default function Footer() {
             </p>
           </div>
           <p className="mt-3 max-w-xs font-body text-sm text-paper-dim">{business.address}</p>
+          <p className="mt-1 font-body text-sm text-paper-dim">
+            {facilities.floor}
+            {facilities.liftAvailable ? " · Lift Available" : ""}
+          </p>
           <p className="mt-1 font-body text-sm text-paper-dim">
             {business.hours} · {business.hoursSunday}
           </p>
